@@ -2,7 +2,6 @@ import hashlib
 from os.path import join as join_path
 from subprocess import run
 
-
 from strings import *
 from utils import *
 
@@ -15,7 +14,7 @@ def cmd_enter(image):
   qrun(['docker', 'rmi', '-f', 'mouc-managed'], True)
 
   if not isfile(image_cache_path):
-    qrun(['docker', 'build', '-t', 'mouc-managed', '-f', dockerfile_path, '.'])
+    qrun(['docker', 'build', '-t', 'mouc-managed', '-f', dockerfile_path, home_dir])
     qrun(['docker', 'save', '-o', image_cache_path, 'mouc-managed'])
     qrun(['docker', 'rmi', '-f', 'mouc-managed'])
 
