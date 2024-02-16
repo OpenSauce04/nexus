@@ -8,8 +8,9 @@ from utils import *
 def cmd_enter(image):
   username = os.environ.get('SUDO_USER', os.environ.get('USERNAME'))
   homedir = expanduser(f'~{username}')
-  image_hash = hashlib.md5(image.encode()).hexdigest()
   image_path = f'{homedir}/.mouc/dockerfiles/{image}'
+  with open(image_path, 'rb', buffering=0) as f:
+    image_hash = hashlib.file_digest(f, 'md5').hexdigest()
   image_cache_path = f'{homedir}/.mouc/imagecache/{image_hash}'
 
   qrun(['docker', 'rmi', '-f', 'mouc-managed'], True)
