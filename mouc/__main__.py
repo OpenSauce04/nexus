@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 import sys
-import messages
+
 from command.enter import cmd_enter
+import messages
 
 if len(sys.argv) == 1:
   print(messages.program_usage)
