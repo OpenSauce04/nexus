@@ -19,9 +19,13 @@ def cmd_enter(image):
     qrun(['docker', 'rmi', '-f', 'mouc-managed'])
 
   qrun(['docker', 'load', '-q', '-i', image_cache_path])
+  qrun(['xhost', '+si:localuser:root'])
   run([
     'docker', 'run', '-it',
       '--volume', f'{home_dir}:/var/host/{home_dir}',
+      '--device', '/dev/dri',
+      '--env=DISPLAY',
+      '--net=host',
       '--workdir', f'/var/host/{os.getcwd()}',
       'mouc-managed', '/bin/bash'
     ])
