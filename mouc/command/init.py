@@ -3,5 +3,5 @@ import os
 from strings import *
 
 def cmd_init():
-  os.mkdir(mouc_dir)
-  os.mkdir(dockerfiles_dir)
+  os.makedirs(mouc_dir, exist_ok=True)
+  os.makedirs(dockerfiles_dir, exist_ok=True)
