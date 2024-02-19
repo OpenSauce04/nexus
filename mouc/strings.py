@@ -8,6 +8,7 @@ username = os.environ.get('SUDO_USER', os.environ.get('USERNAME'))
 home_dir = expanduser(f'~{username}')
 mouc_dir = home_dir+'/.mouc'
 dockerfiles_dir = mouc_dir+'/dockerfiles'
+buildfiles_dir = mouc_dir+'/data'
 
 # Messages
 program_usage = \

@@ -1,14 +1,17 @@
 from os.path import join as join_path
 from subprocess import run
 
+from command.init import cmd_init
 from strings import *
 from utils import *
 
 def cmd_enter(image):
   dockerfile_path = join_path(dockerfiles_dir, image)
+  cmd_init()
+  os.makedirs(join_path(buildfiles_dir, image), exist_ok=True)
 
   qrun(['docker', 'rmi', '-f', 'mouc-managed'], True)
-  qrun(['docker', 'build', '-t', 'mouc-managed', '-f', dockerfile_path, home_dir])
+  qrun(['docker', 'build', '-t', 'mouc-managed', '-f', dockerfile_path, join_path(buildfiles_dir, image)])
 
   qrun(['su', username, '-c', 'xhost local:root'])
   run([
