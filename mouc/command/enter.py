@@ -21,6 +21,7 @@ def cmd_enter(image):
       '--env=DISPLAY',
       '--net=host',
       '--workdir', f'/var/host/{os.getcwd()}',
+      '--rm',
       'mouc-managed', '/bin/sh'
     ])
 
