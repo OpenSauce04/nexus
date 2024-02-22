@@ -21,7 +21,7 @@ def cmd_enter(image):
       '--env=DISPLAY',
       '--net=host',
       '--workdir', f'/var/host/{os.getcwd()}',
-      'mouc-managed', '/bin/bash'
+      'mouc-managed', '/bin/sh'
     ])
 
   qrun(['docker', 'rmi', '-f', 'mouc-managed'])
