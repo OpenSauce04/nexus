@@ -1,6 +1,7 @@
 import hashlib
 from os.path import join as join_path
 from subprocess import run
+from time import sleep
 
 from command.init import cmd_init
 from strings import *
@@ -17,7 +18,13 @@ def cmd_enter(image):
 
   qrun(['su', username, '-c', 'xhost local:root'])
   qrun(['docker', 'pull', 'docker'])
-  qrun(['docker', 'run', '--rm', '-dt',
+
+  # If DinD container doesn't already exist, start it and wait for Docker to init
+  waitForContainer = False
+  try:
+    run(['sh', '-c', 'docker container inspect mouc-env > /dev/null 2>&1'], check=True)
+  except:
+    qrun(['docker', 'run', '--rm', '-dt',
           '--privileged',
           '--device', '/dev/dri',
           '--env=DISPLAY',
@@ -25,6 +32,7 @@ def cmd_enter(image):
           '--volume', f'{home_dir}:/var/host/{home_dir}',
           '--name', 'mouc-env',
           'docker'], silent_error=True)
+    sleep(2)
 
   if not isfile(image_cache_path):
     run(['docker', 'exec', 'mouc-env', 'sh', '-c',
