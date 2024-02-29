@@ -30,7 +30,7 @@ def cmd_enter(image):
           '--net=host',
           '--volume', f'{home_dir}:/var/host/{home_dir}',
           '--name', 'mouc-env',
-          'docker'], silent_error=True)
+          'docker'])
     sleep(2)
 
   if not isfile(image_cache_path):
