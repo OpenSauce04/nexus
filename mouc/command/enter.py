@@ -1,7 +1,6 @@
 import hashlib
 from os.path import join as join_path
 from subprocess import run
-import sys
 
 from command.init import cmd_init
 from strings import *
