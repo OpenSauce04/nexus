@@ -17,4 +17,8 @@ program_usage = \
 - mouc init
     Initializes the directories required to use mouc (~/.mouc/*)
 - mouc enter [image]
-    Enters an image defined in ~/.mouc/dockerfiles/"""
+    Enters an image defined in ~/.mouc/dockerfiles/
+- mouc clean [mode]
+    Modes:
+      cache
+      docker"""
