@@ -46,7 +46,7 @@ def cmd_enter(image):
           '--env=DISPLAY '
           '--net=host '
           f'--volume /var/host/{home_dir}:/var/host/{home_dir} '
-          f'--workdir /var/host/{os.getcwd()} '
+          f'--workdir "/var/host/{os.getcwd()}" '
           'mouc-managed /bin/sh'
         )
       ])
