@@ -20,7 +20,6 @@ def cmd_enter(image):
   qrun(['docker', 'pull', 'docker'])
 
   # If DinD container doesn't already exist, start it and wait for Docker to init
-  waitForContainer = False
   try:
     run(['sh', '-c', 'docker container inspect mouc-env > /dev/null 2>&1'], check=True)
   except:
