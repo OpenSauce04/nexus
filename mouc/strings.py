@@ -9,6 +9,7 @@ home_dir = expanduser(f'~{username}')
 mouc_dir = home_dir+'/.mouc'
 dockerfiles_dir = mouc_dir+'/dockerfiles'
 buildfiles_dir = mouc_dir+'/data'
+image_cache_dir = mouc_dir+'/imagecache'
 
 # Messages
 program_usage = \
