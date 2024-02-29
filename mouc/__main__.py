@@ -12,7 +12,10 @@ if len(sys.argv) == 1:
 match sys.argv[1]:
 
   case 'clean':
-    cmd_clean()
+    if len(sys.argv) == 2:
+      print(strings.program_usage)
+      exit(1)
+    cmd_clean(sys.argv[2])
 
   case 'enter':
     if len(sys.argv) == 2:
