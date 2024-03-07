@@ -16,29 +16,7 @@ def cmd_enter(image):
   cmd_init()
   os.makedirs(join_path(buildfiles_dir, image), exist_ok=True)
 
-  qrun(['su', username, '-c', 'xhost local:root'])
-  qrun(['docker', 'pull', 'docker'])
-
-  # If container is stopped, start it
-  try:
-    run(['sh', '-c', 'if [[ $(docker ps -aq -f name=mouc-env -f status=exited) ]]; then exit 1; fi'], check=True)
-  except:
-    qrun(['docker', 'container', 'start', 'mouc-env'])
-    sleep(0.2)
-
-  # If DinD container doesn't already exist, start it and wait for Docker to init
-  try:
-    run(['sh', '-c', 'docker container inspect mouc-env > /dev/null 2>&1'], check=True)
-  except:
-    qrun(['docker', 'run', '-dt',
-          '--privileged',
-          '--device', '/dev/dri',
-          '--env=DISPLAY',
-          '--net=host',
-          '--volume', f'{home_dir}:/var/host/{home_dir}',
-          '--name', 'mouc-env',
-          'docker'])
-    sleep(2)
+  start_mouc_env()
 
   if not isfile(image_cache_path):
     run(['docker', 'exec', 'mouc-env', 'sh', '-c',

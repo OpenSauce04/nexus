@@ -18,6 +18,8 @@ program_usage = \
     Initializes the directories required to use mouc (~/.mouc/*)
 - mouc enter [image]
     Enters an image defined in ~/.mouc/dockerfiles/
+- mouc rebuild [image]
+    Forces a rebuild of an image
 - mouc clean [mode]
     Modes:
       cache
