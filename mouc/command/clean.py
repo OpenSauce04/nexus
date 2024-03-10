@@ -18,3 +18,6 @@ def cmd_clean(mode):
     case 'all':
       cmd_clean('cache')
       cmd_clean('env')
+
+    case _:
+      print(program_usage_msg)

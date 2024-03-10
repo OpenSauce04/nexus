@@ -12,7 +12,7 @@ buildfiles_dir = mouc_dir+'/data'
 image_cache_dir = mouc_dir+'/imagecache'
 
 # Messages
-program_usage = \
+program_usage_msg = \
 """Usage: mouc [command]
 - mouc init
     Initializes the directories required to use mouc (~/.mouc/*)
