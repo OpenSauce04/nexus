@@ -17,7 +17,7 @@ def cmd_rebuild(image):
   cmd_init()
   os.makedirs(join_path(buildfiles_dir, image), exist_ok=True)
 
-  cmd_clean('docker')
+  cmd_clean('env')
   start_mouc_env()
 
   if os.path.exists(image_cache_path):

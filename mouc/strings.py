@@ -23,4 +23,4 @@ program_usage = \
 - mouc clean [mode]
     Modes:
       cache
-      docker"""
+      env"""

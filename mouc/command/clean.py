@@ -12,9 +12,9 @@ def cmd_clean(mode):
       for f in files:
         os.remove(f)
 
-    case 'docker':
+    case 'env':
       qrun(['docker', 'rm', '-fv', 'mouc-env'], silent_error=True)
 
     case 'all':
       cmd_clean('cache')
-      cmd_clean('docker')
+      cmd_clean('env')
