@@ -27,6 +27,7 @@ def cmd_enter(image):
   run(['docker', 'exec', '-it', 'mouc-env', 'sh', '-c',
         (
           'docker run --rm -it '
+          '--privileged '
           '--device /dev/dri '
           '--env=DISPLAY '
           '--net=host '
