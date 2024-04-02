@@ -17,7 +17,7 @@ def start_mouc_env():
 
   # If container is stopped, start it
   try:
-    run(['sh', '-c', 'if [[ $(docker ps -aq -f name=mouc-env -f status=exited) ]]; then exit 1; fi'], check=True)
+    run(['bash', '-c', 'if [[ $(docker ps -aq -f name=mouc-env -f status=exited) ]]; then exit 1; fi'], check=True)
   except:
     qrun(['docker', 'container', 'start', 'mouc-env'])
     sleep(0.2)
