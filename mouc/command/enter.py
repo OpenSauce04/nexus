@@ -1,9 +1,9 @@
 import hashlib
 from os.path import join as join_path
 from subprocess import run
-from time import sleep
 
 from command.init import cmd_init
+from command.rebuild import cmd_rebuild
 from strings import *
 from utils import *
 
@@ -13,14 +13,10 @@ def cmd_enter(image):
     dockerfile_hash = hashlib.file_digest(f, 'md5').hexdigest()
   image_cache_path = join_path(image_cache_dir, dockerfile_hash)
 
-  cmd_init()
-  os.makedirs(join_path(buildfiles_dir, image), exist_ok=True)
-
   start_mouc_env()
 
   if not isfile(image_cache_path):
-    run(['docker', 'exec', 'mouc-env', 'sh', '-c',
-          f'docker build -t mouc-managed -f /var/host/{dockerfile_path} /var/host/{buildfiles_dir}/{image} && docker save -o /var/host/{image_cache_path} mouc-managed'])
+    cmd_rebuild()
 
   qrun(['docker', 'exec', 'mouc-env', 'sh', '-c',
         f'docker load -i /var/host/{image_cache_path}'])
