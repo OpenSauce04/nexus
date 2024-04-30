@@ -19,6 +19,5 @@ def cmd_rebuild(image):
 
   start_mouc_env()
 
-  if not isfile(image_cache_path):
-    run(['docker', 'exec', 'mouc-env', 'sh', '-c',
-          f'docker build -t mouc-managed -f /var/host/{dockerfile_path} /var/host/{buildfiles_dir}/{image} && docker save -o /var/host/{image_cache_path} mouc-managed'])
+  run(['docker', 'exec', 'mouc-env', 'sh', '-c',
+      f'docker build -t mouc-managed -f /var/host/{dockerfile_path} /var/host/{buildfiles_dir}/{image} && docker save -o /var/host/{image_cache_path} mouc-managed'])
