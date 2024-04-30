@@ -34,4 +34,4 @@ def start_mouc_env():
           '--volume', f'{home_dir}:/var/host/{home_dir}',
           '--name', 'mouc-env',
           'docker'])
-    sleep(2)
+    sleep(3)
