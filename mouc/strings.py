@@ -23,6 +23,7 @@ program_usage_msg = \
     Enters an image defined in ~/.mouc/dockerfiles/
 - mouc rebuild [image]
     Forces a rebuild of an image
+    Use `--no-cache` to not use cache when building
 - mouc clean [mode]
     Modes:
       cache

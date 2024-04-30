@@ -28,7 +28,11 @@ match sys.argv[1]:
     if len(sys.argv) == 2:
       print(program_usage_msg)
       exit(1)
-    cmd_rebuild(sys.argv[2])
+    if len(sys.argv) >= 4:
+      option = sys.argv[3]
+    else:
+      option = ''
+    cmd_rebuild(sys.argv[2], option)
 
   case 'init':
     cmd_init()
