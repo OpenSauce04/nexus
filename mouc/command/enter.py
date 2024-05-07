@@ -12,10 +12,8 @@ def cmd_enter(image):
     dockerfile_hash = hashlib.file_digest(f, 'md5').hexdigest()
   image_cache_path = join_path(image_cache_dir, dockerfile_hash)
 
-  start_mouc_env()
-
   if not isfile(image_cache_path):
-    cmd_rebuild()
+    cmd_rebuild(image, '')
 
   qrun(['docker', 'exec', 'mouc-env', 'sh', '-c',
         f'docker load -i /var/host/{image_cache_path}'])
