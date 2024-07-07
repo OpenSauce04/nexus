@@ -34,4 +34,4 @@ def start_nexus_env():
           '--volume', f'{home_dir}:/var/host/{home_dir}',
           '--name', 'nexus-env',
           'docker'])
-    sleep(3)
+    sleep(5)
