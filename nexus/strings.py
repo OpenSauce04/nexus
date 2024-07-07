@@ -9,22 +9,22 @@ if username == None:
 
 # Paths
 home_dir = expanduser(f'~{username}')
-mouc_dir = home_dir+'/.mouc'
-dockerfiles_dir = mouc_dir+'/dockerfiles'
-buildfiles_dir = mouc_dir+'/data'
-image_cache_dir = mouc_dir+'/imagecache'
+nexus_dir = home_dir+'/.nexus'
+dockerfiles_dir = nexus_dir+'/dockerfiles'
+buildfiles_dir = nexus_dir+'/data'
+image_cache_dir = nexus_dir+'/imagecache'
 
 # Messages
 program_usage_msg = \
-"""Usage: mouc [command]
-- mouc init
-    Initializes the directories required to use mouc (~/.mouc/*)
-- mouc enter [image]
-    Enters an image defined in ~/.mouc/dockerfiles/
-- mouc rebuild [image]
+"""Usage: nexus [command]
+- nexus init
+    Initializes the directories required to use nexus (~/.nexus/*)
+- nexus enter [image]
+    Enters an image defined in ~/.nexus/dockerfiles/
+- nexus rebuild [image]
     Forces a rebuild of an image
     Use `--no-cache` to not use cache when building
-- mouc clean [mode]
+- nexus clean [mode]
     Modes:
       cache
       env"""

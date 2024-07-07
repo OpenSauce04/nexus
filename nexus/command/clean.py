@@ -13,7 +13,7 @@ def cmd_clean(mode):
         os.remove(f)
 
     case 'env':
-      qrun(['docker', 'rm', '-fv', 'mouc-env'], silent_error=True)
+      qrun(['docker', 'rm', '-fv', 'nexus-env'], silent_error=True)
 
     case 'all':
       cmd_clean('cache')

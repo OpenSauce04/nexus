@@ -20,14 +20,14 @@ match sys.argv[1]:
     cmd_clean(sys.argv[2])
 
   case 'enter':
-    start_mouc_env()
+    start_nexus_env()
     if len(sys.argv) == 2:
       print(program_usage_msg)
       exit(1)
     cmd_enter(sys.argv[2])
 
   case 'rebuild':
-    start_mouc_env()
+    start_nexus_env()
     if len(sys.argv) == 2:
       print(program_usage_msg)
       exit(1)

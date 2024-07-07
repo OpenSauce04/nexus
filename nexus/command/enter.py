@@ -15,9 +15,9 @@ def cmd_enter(image):
   if not isfile(image_cache_path):
     cmd_rebuild(image, '')
 
-  qrun(['docker', 'exec', 'mouc-env', 'sh', '-c',
+  qrun(['docker', 'exec', 'nexus-env', 'sh', '-c',
         f'docker load -i /var/host/{image_cache_path}'])
-  run(['docker', 'exec', '-it', 'mouc-env', 'sh', '-c',
+  run(['docker', 'exec', '-it', 'nexus-env', 'sh', '-c',
         (
           'docker run --rm -it '
           '--privileged '
@@ -26,6 +26,6 @@ def cmd_enter(image):
           '--net=host '
           f'--volume /var/host/{home_dir}:/var/host/{home_dir} '
           f'--workdir "/var/host/{os.getcwd()}" '
-          'mouc-managed /bin/sh'
+          'nexus-managed /bin/sh'
         )
       ])

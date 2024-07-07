@@ -20,5 +20,5 @@ def cmd_rebuild(image, option):
   cmd_init()
   os.makedirs(join_path(buildfiles_dir, image), exist_ok=True)
 
-  run(['docker', 'exec', 'mouc-env', 'sh', '-c',
-       f'docker build {extraparams} -t mouc-managed -f /var/host/{dockerfile_path} /var/host/{buildfiles_dir}/{image} && docker save -o /var/host/{image_cache_path} mouc-managed'])
+  run(['docker', 'exec', 'nexus-env', 'sh', '-c',
+       f'docker build {extraparams} -t nexus-managed -f /var/host/{dockerfile_path} /var/host/{buildfiles_dir}/{image} && docker save -o /var/host/{image_cache_path} nexus-managed'])
