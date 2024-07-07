@@ -12,8 +12,11 @@ def qrun(args, silent_error = False):
   subprocess.run(args, stdout = subprocess.DEVNULL, stderr = _stderr)
 
 def start_nexus_env():
-  qrun(['su', username, '-c', 'xhost local:root'])
-  qrun(['docker', 'pull', 'docker'])
+  # If xhost is not configured correctly, fix it
+  try:
+    run(['xhost |', 'grep', 'LOCAL:'], check=True)
+  except:
+    qrun(['xhost', 'local:root'])
 
   # If container is stopped, start it
   try:
@@ -26,6 +29,9 @@ def start_nexus_env():
   try:
     run(['sh', '-c', 'docker container inspect nexus-env > /dev/null 2>&1'], check=True)
   except:
+    # Pull DinD image from Docker Hub
+    qrun(['docker', 'pull', 'docker'])
+    # Start DinD container named 'nexus-env'
     qrun(['docker', 'run', '-dt',
           '--privileged',
           '--device', '/dev/dri',
