@@ -23,7 +23,7 @@ def start_nexus_env():
     run(['bash', '-c', 'if [[ $(docker ps -aq -f name=nexus-env -f status=exited) ]]; then exit 1; fi'], check=True)
   except:
     qrun(['docker', 'container', 'start', 'nexus-env'])
-    sleep(0.2)
+    sleep(1)
 
   # If DinD container doesn't already exist, start it and wait for Docker to init
   try:
