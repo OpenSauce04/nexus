@@ -26,5 +26,6 @@ program_usage_msg = \
     Use `--no-cache` to not use cache when building
 - nexus clean [mode]
     Modes:
-      cache
-      env"""
+      cache - cleans nexus image cache
+      env   - cleans nexus docker environment
+      all   - cleans both the image cache and docker environment"""
