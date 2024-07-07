@@ -3,9 +3,7 @@ import os
 from os.path import *
 
 # Environment
-username = os.environ.get('SUDO_USER', os.environ.get('USERNAME'))
-if username == None:
-  username = getuser()
+username = getuser()
 
 # Paths
 home_dir = expanduser(f'~{username}')
