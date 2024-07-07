@@ -14,7 +14,7 @@ def qrun(args, silent_error = False):
 def start_nexus_env():
   # If xhost is not configured correctly, fix it
   try:
-    run(['xhost |', 'grep', 'LOCAL:'], check=True)
+    run(['sh', '-c', 'xhost | grep LOCAL: > /dev/null 2>&1'], check=True)
   except:
     qrun(['xhost', 'local:root'])
 
