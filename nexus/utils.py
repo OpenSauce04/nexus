@@ -34,7 +34,8 @@ def start_nexus_env():
     # Start DinD container named 'nexus-env'
     qrun(['docker', 'run', '-dt',
           '--privileged',
-          '--device', '/dev/dri',
+          '--device=/dev/dri',
+          '--device=/dev/fuse',
           '--env=DISPLAY',
           '--net=host',
           '--volume', f'{home_dir}:/var/host/{home_dir}',

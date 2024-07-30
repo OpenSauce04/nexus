@@ -21,7 +21,8 @@ def cmd_enter(image):
         (
           'docker run --rm -it '
           '--privileged '
-          '--device /dev/dri '
+          '--device=/dev/dri '
+          '--device=/dev/fuse '
           '--env=DISPLAY '
           '--net=host '
           f'--volume /var/host/{home_dir}:/var/host/{home_dir} '
