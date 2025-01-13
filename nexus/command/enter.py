@@ -14,6 +14,8 @@ def cmd_enter(image):
 
   if not isfile(image_cache_path):
     cmd_rebuild(image, '')
+    if not isfile(image_cache_path): # Something has gone wrong, exit.
+      return
 
   qrun(['docker', 'exec', 'nexus-env', 'sh', '-c',
         f'docker load -i /var/host/{image_cache_path}'])
