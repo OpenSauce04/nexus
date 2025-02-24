@@ -30,6 +30,13 @@ func main() {
 				enterDockerfile(os.Args[2])
 			}
 
+		case "clean":
+			if len(os.Args) <= 2 {
+				showHelpMessage()
+			} else {
+				cleanNexus(os.Args[2])
+			}
+
 		default:
 			showHelpMessage()
 		}

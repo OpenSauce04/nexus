@@ -73,3 +73,28 @@ func enterDockerfile(dockerfile string) {
 			"--workdir \"/var/host/" + pwd + "\" nexus-managed /bin/sh'"
 	shellRunInteractive(enterEnvironmentCommand)
 }
+
+func cleanNexus(option string) {
+	switch option {
+	case "all":
+		cleanNexus("env")
+		cleanNexus("cache")
+
+	case "cache":
+		fmt.Print("Cleaning image cache...")
+		// TODO: Do this better
+		os.RemoveAll(imagecacheDir)
+		os.Mkdir(imagecacheDir, 0755)
+		fmt.Println("done")
+
+	case "env":
+		fallthrough
+	case "environment":
+		fmt.Print("Cleaning environment...")
+		shellRun("docker rm -fv nexus-env")
+		fmt.Println("done")
+
+	default:
+		showHelpMessage()
+	}
+}

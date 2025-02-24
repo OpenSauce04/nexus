@@ -6,11 +6,21 @@ import (
 
 const helpMessage =
 `Usage: nexus [command] [params]
-- nexus start
-    Starts the nexus docker environment, or creates it if it doesn't exist
+
+- nexus clean [option]
+    - cache
+        Clean built image cache
+    - environment / env
+        Clean Nexus environment container
+    - all
+        Clean both
+
 - nexus enter [dockerfile]
-    Builds and/or enters the Dockerfile located at ~/.config/nexus/dockerfiles/<dockerfile>
-`
+    Builds and/or enters the Dockerfile located at ~/.config/nexus/dockerfiles/<dockerfile>.
+
+- nexus start
+    Starts the nexus docker environment, or creates it if it doesn't exist.`
+
 const commonDockerFlags = "--privileged --device=/dev/dri --device=/dev/fuse --env=DISPLAY --net=host"
 
 var homeDir, configDir, dockerfilesDir, buildfilesDir, cacheDir, imagecacheDir string
