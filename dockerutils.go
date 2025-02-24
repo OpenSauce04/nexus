@@ -3,7 +3,14 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 )
+
+func waitForDinD() {
+	// Wait for the Docker instance inside the Nexus environment to start
+	// TODO: Actually check if Docker has started rather than waiting an arbitrary amount of time
+	time.Sleep(5 * time.Second)
+}
 
 func startEnvironment() {
 	// If Nexus environment exists but is stopped, start it
@@ -11,6 +18,7 @@ func startEnvironment() {
 	if isEnvironmentStopped {
 		fmt.Print("Starting nexus environment...")
 		shellRun("docker container start nexus-env")
+		waitForDinD()
 		fmt.Println("done")
 	}
 
@@ -24,6 +32,7 @@ func startEnvironment() {
 			"docker run -dt " + commonDockerFlags + " --volume " + homeDir + ":/var/host/" + homeDir + " " +
 				"--name nexus-env docker:dind"
 		shellRun(createEnvCommand)
+		waitForDinD()
 		fmt.Println("done")
 	}
 }
