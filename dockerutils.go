@@ -5,7 +5,7 @@ import (
 )
 
 func startEnvironment() {
-	// If environment exists but is stopped, start it
+	// If Nexus environment exists but is stopped, start it
 	isEnvironmentStopped := shellRun("if [[ $(docker ps -aq -f name=nexus-env -f status=exited) ]]; then exit 1; fi") != nil
 	if isEnvironmentStopped {
 		fmt.Print("Starting nexus environment...")
@@ -13,7 +13,7 @@ func startEnvironment() {
 		fmt.Println("done")
 	}
 
-	// If environment doesn't exist, create it
+	// If Nexus environment doesn't exist, create it
 	doesEnvironmentExist := shellRun("docker container inspect nexus-env") == nil
 	if !doesEnvironmentExist {
 		fmt.Print("Creating nexus environment...")
