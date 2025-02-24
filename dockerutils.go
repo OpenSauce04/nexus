@@ -29,7 +29,7 @@ func startEnvironment() {
 }
 
 func rebuildDockerfile(dockerfile string) {
-	fmt.Print("Building dockerfile '" + dockerfile + "'...")
+	fmt.Println("Building dockerfile '" + dockerfile + "'...")
 	// Create build files dir if it doesn't exist
 	os.Mkdir(buildfilesDir + "/" + dockerfile, 0755)
 	
@@ -43,15 +43,12 @@ func rebuildDockerfile(dockerfile string) {
 		"docker exec nexus-env sh -c 'docker build " + extraparams + " -t nexus-managed -f /var/host/" + dockerfilesDir + "/" + dockerfile + " " +
 			"/var/host/" + buildfilesDir + "/" + dockerfile + " && docker save -o /var/host/" + imagecacheDir + "/" + dockerfileHash + " " +
 			"nexus-managed'"
-	result := shellRun(rebuildCommand)
+	result := shellRunInteractive(rebuildCommand)
 	
 	// If something went wrong, abort the program
 	if result != nil {
-		fmt.Println("FAILED")
 		os.Exit(1)
 	}
-	
-	fmt.Println("done")
 }
 
 func enterDockerfile(dockerfile string) {
