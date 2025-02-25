@@ -9,7 +9,7 @@ const helpMessage =
 
 - nexus clean [option]
     - cache
-        Clean built image cache
+        Clean built image cache located at ~/.cache/nexus/imagecache/
     - environment / env
         Clean Nexus environment container
     - all
