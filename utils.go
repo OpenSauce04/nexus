@@ -32,6 +32,16 @@ func fileExists(path string) bool {
 	return err == nil
 }
 
+func escapeString(str string) string {
+	escapedStr := str
+	escapedStr = strings.ReplaceAll(escapedStr, " ", "\\ ")
+	escapedStr = strings.ReplaceAll(escapedStr, "\"", "\\\"")
+	escapedStr = strings.ReplaceAll(escapedStr, "'", "'\"'\"'")
+	escapedStr = strings.ReplaceAll(escapedStr, "`", "\\`")
+	escapedStr = "\"" + escapedStr + "\""
+	return escapedStr
+}
+
 func initDirs() {
 	// TODO: Handle errors
 	os.Mkdir(homeDir, 0755)

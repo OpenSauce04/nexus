@@ -29,7 +29,7 @@ func startEnvironment() {
 		shellRun("docker pull docker:dind")
 		// TODO: Understand/explain what all these options I added via trial-and-error actually do.
 		createEnvCommand :=
-			"docker run -dt " + commonDockerFlags + " --volume " + homeDir + ":/var/host/" + homeDir + " " +
+			"docker run -dt " + commonDockerFlags + " --volume " + escapeString(homeDir) + ":/var/host/" + escapeString(homeDir) + " " +
 				"--name nexus-env docker:dind"
 		shellRun(createEnvCommand)
 		waitForDinD()
@@ -78,8 +78,8 @@ func enterDockerfile(dockerfile string) {
 	pwd, _ := os.Getwd()
 	enterEnvironmentCommand :=
 		"docker exec -it nexus-env sh -c 'docker run --rm -it " + commonDockerFlags + " " +
-			"--volume /var/host/" + homeDir + ":/var/host/" + homeDir + " " +
-			"--workdir \"/var/host/" + pwd + "\" nexus-managed /bin/sh'"
+			"--volume /var/host/" + escapeString(homeDir) + ":/var/host/" + escapeString(homeDir) + " " +
+			"--workdir /var/host/" + escapeString(pwd) + " nexus-managed /bin/sh'"
 	shellRunInteractive(enterEnvironmentCommand)
 }
 
