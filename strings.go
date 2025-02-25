@@ -16,13 +16,13 @@ const helpMessage =
         Clean both
 
 - nexus enter [dockerfile]
-    Builds and/or enters the Dockerfile located at ~/.config/nexus/dockerfiles/<dockerfile>.
+    Builds and/or enters the Dockerfile located at ~/.config/nexus/dockerfiles/<dockerfile>
 
 - nexus rebuild [dockerfile]
-    Builds/rebuilds the Dockerfile located at ~/.config/nexus/dockerfiles/<dockerfile>.
+    Builds/rebuilds the Dockerfile located at ~/.config/nexus/dockerfiles/<dockerfile>
 
 - nexus start
-    Starts the nexus docker environment, or creates it if it doesn't exist.`
+    Starts the nexus docker environment, or creates it if it doesn't exist`
 
 const commonDockerFlags = "--privileged --device=/dev/dri --device=/dev/fuse --env=DISPLAY --net=host"
 
