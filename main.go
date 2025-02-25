@@ -20,8 +20,12 @@ func main() {
 		showHelpMessage()
 	} else {
 		switch os.Args[1] {
-		case "start":
-			startEnvironment()
+		case "clean":
+			if len(os.Args) <= 2 {
+				showHelpMessage()
+			} else {
+				cleanNexus(os.Args[2])
+			}
 
 		case "enter":
 			if len(os.Args) <= 2 {
@@ -30,12 +34,15 @@ func main() {
 				enterDockerfile(os.Args[2])
 			}
 
-		case "clean":
+		case "rebuild":
 			if len(os.Args) <= 2 {
 				showHelpMessage()
 			} else {
-				cleanNexus(os.Args[2])
+				rebuildDockerfile(os.Args[2])
 			}
+
+		case "start":
+			startEnvironment()
 
 		default:
 			showHelpMessage()

@@ -18,6 +18,9 @@ const helpMessage =
 - nexus enter [dockerfile]
     Builds and/or enters the Dockerfile located at ~/.config/nexus/dockerfiles/<dockerfile>.
 
+- nexus rebuild [dockerfile]
+    Builds/rebuilds the Dockerfile located at ~/.config/nexus/dockerfiles/<dockerfile>.
+
 - nexus start
     Starts the nexus docker environment, or creates it if it doesn't exist.`
 
