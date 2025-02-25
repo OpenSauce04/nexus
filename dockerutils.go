@@ -38,6 +38,9 @@ func startEnvironment() {
 }
 
 func rebuildDockerfile(dockerfile string) {
+	// First, make sure that the Nexus environment is actually running
+	startEnvironment()
+
 	fmt.Println("Building dockerfile '" + dockerfile + "'...")
 	// Create build files dir if it doesn't exist
 	os.Mkdir(buildfilesDir + "/" + dockerfile, 0755)
