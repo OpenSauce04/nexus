@@ -34,7 +34,6 @@ func fileExists(path string) bool {
 
 func escapeString(str string) string {
 	escapedStr := str
-	escapedStr = strings.ReplaceAll(escapedStr, " ", "\\ ")
 	escapedStr = strings.ReplaceAll(escapedStr, "\"", "\\\"")
 	escapedStr = strings.ReplaceAll(escapedStr, "'", "'\"'\"'")
 	escapedStr = strings.ReplaceAll(escapedStr, "`", "\\`")
