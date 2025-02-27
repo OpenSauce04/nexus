@@ -15,11 +15,14 @@ const helpMessage =
     - all
         Clean both
 
-- nexus enter [dockerfile]
+- nexus enter [dockerfile] [command]
     Builds and/or enters the Dockerfile located at ~/.config/nexus/dockerfiles/<dockerfile>
+    If [command] is specified, that command will be run when entering the container, otherwise
+    '/bin/sh' will run by default
 
-- nexus rebuild [dockerfile]
+- nexus rebuild [dockerfile] [--no-cache]
     Builds/rebuilds the Dockerfile located at ~/.config/nexus/dockerfiles/<dockerfile>
+    If the --no-cache flag is specified, the image is built without the use of Docker cache
 
 - nexus start
     Starts the nexus docker environment, or creates it if it doesn't exist`
