@@ -80,6 +80,10 @@ func enterDockerfile(dockerfile string) {
 	// TODO: Handle error
 	dockerfileContent, _ := os.ReadFile(dockerfilesDir + "/" + dockerfile)
 	dockerfileHash := stringToMD5(string(dockerfileContent))
+	userCommand := "/bin/sh"
+	if len(os.Args) > 3 {
+		userCommand = os.Args[3]
+	}
 
 	// If there is no image cache for the given Dockerfile, build it
 	if !fileExists(imagecacheDir + "/" + dockerfileHash) {
@@ -92,7 +96,7 @@ func enterDockerfile(dockerfile string) {
 	enterEnvironmentCommand :=
 		"docker exec -it nexus-env sh -c 'docker run --rm -it " + commonDockerFlags + " " +
 			"--volume /var/host/" + escapeString(homeDir) + ":/var/host/" + escapeString(homeDir) + " " +
-			"--workdir /var/host/" + escapeString(pwd) + " nexus-managed /bin/sh'"
+			"--workdir /var/host/" + escapeString(pwd) + " nexus-managed " + escapeString(userCommand) + "'"
 	shellRunInteractive(enterEnvironmentCommand)
 }
 
