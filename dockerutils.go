@@ -8,8 +8,13 @@ import (
 
 func waitForDinD() {
 	// Wait for the Docker instance inside the Nexus environment to start
-	// TODO: Actually check if Docker has started rather than waiting an arbitrary amount of time
-	time.Sleep(5 * time.Second)
+	for {
+		result := shellRun("docker exec nexus-env sh -c 'docker version'")
+		if result == nil {
+			break
+		}
+		time.Sleep(time.Second / 2)
+	}
 }
 
 func startEnvironment() {
