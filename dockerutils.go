@@ -54,8 +54,13 @@ func rebuildDockerfile(dockerfile string) {
 	dockerfileContent, _ := os.ReadFile(dockerfilesDir + "/" + dockerfile)
 	dockerfileHash := stringToMD5(string(dockerfileContent))
 
-	// TODO: Implement --no-cache option
 	extraparams := ""
+	if len(os.Args) > 3 {
+		// TODO: Maybe add more options here? If necessary?
+		if os.Args[3] == "--no-cache" {
+			extraparams = "--no-cache"
+		}
+	}
 	rebuildCommand :=
 		"docker exec nexus-env sh -c 'docker build " + extraparams + " -t nexus-managed -f /var/host/" + dockerfilesDir + "/" + dockerfile + " " +
 			"/var/host/" + buildfilesDir + "/" + dockerfile + " && docker save -o /var/host/" + imagecacheDir + "/" + dockerfileHash + " " +
