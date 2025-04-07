@@ -1,7 +1,7 @@
 package main
 
 import (
-	"os"
+    "os"
 )
 
 const helpMessage =
@@ -32,10 +32,10 @@ const commonDockerFlags = "--privileged --device=/dev/dri --device=/dev/fuse --e
 var homeDir, configDir, dockerfilesDir, buildfilesDir, cacheDir, imagecacheDir string
 
 func initStrings() {
-	homeDir, _ = os.UserHomeDir()
-	configDir = homeDir + "/.config/nexus"
-	dockerfilesDir = configDir + "/dockerfiles"
-	buildfilesDir = configDir + "/buildfiles"
-	cacheDir = homeDir + "/.cache/nexus"
-	imagecacheDir = cacheDir + "/imagecache"
+    homeDir, _ = os.UserHomeDir()
+    configDir = homeDir + "/.config/nexus"
+    dockerfilesDir = configDir + "/dockerfiles"
+    buildfilesDir = configDir + "/buildfiles"
+    cacheDir = homeDir + "/.cache/nexus"
+    imagecacheDir = cacheDir + "/imagecache"
 }
